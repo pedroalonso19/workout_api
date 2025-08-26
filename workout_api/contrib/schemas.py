@@ -1,0 +1,13 @@
+from datetime import datetime
+from pydantic import UUID4, BaseModel, Field
+from typing import Annotated
+
+
+class BaseSchema(BaseModel):
+    class Config:
+        extra = 'forbid'
+        from_attributes = True
+
+class OutMixin(BaseModel):
+    id: Annotated[UUID4, Field(description='Identificador')]
+    created_at: Annotated[datetime, Field('Data de criação')]
